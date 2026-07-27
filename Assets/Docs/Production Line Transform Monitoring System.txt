@@ -1,0 +1,256 @@
+Production Line Transform Monitoring System
+PLT Monitor
+1. 프로젝트 개요
+PLT Monitor는 Unity 기반 생산 라인 환경에서 이동 중인 다수 오브젝트의 Transform 데이터를 실시간으로 기록하고, 이를 산업용 대시보드 UI에서 그래프로 시각화하는 모니터링 시스템
+
+핵심 목적: 오브젝트를 제어하는 것이 아니라, 생산 라인 상의 오브젝트 상태를 관찰·기록·분석
+
+움직이는 오브젝트 → Transform 값 읽기 → 프레임 데이터 저장 → 그래프 UI 표시 → CSV / JSON 저장 및 불러오기
+
+3. 구현사항
+- 변화하는 오브젝트의 Position / Rotation / Scale, 각 XYZ 축 상태 그래프
+- Position / Rotation / Scale XYZ 기록
+- 16개 오브젝트 이상 추적
+- 60FPS이상 유지
+- 오브젝트당 600프레임 이상 기록 구조
+- JSON 저장 / 불러오기
+- CSV 저장 / 불러오기
+- 파일 브라우저 UI 
+- 그래프 UI 
+- Live View 
+- 상태 해석 패널 
+
+4. 결과
+생산 라인 씬에서 움직이는 16개 이상의 오브젝트 Transform 데이터를 실시간 수집하고, 산업용 UI에서 그래프로 시각화하며, CSV / JSON 저장·불러오기와 파일 브라우저 연동을 지원하는 Unity 모니터링 시스템
+
+5. 전체 시스템 구조
+5.1 구조
+PL_Root
+├ Environment
+├ ProductionLine
+├ TrackObjects
+├ Props
+├ CameraRig
+└ GraphSystem
+
+5.2 시스템 흐름
+Transform Recorder
+↓
+Recorder Manager
+↓
+Graph Data Provider
+↓
+Graph Renderer
+↓
+UI
+
+6. Production Line 구조
+6.1 ProductionLine 구성
+ProductionLine
+├ Conveyor
+├ StartPoint
+├ EndPoint
+├ FallBox
+
+6.2 기능
+- StartPoint 생성 => EndPoint 이동 => 자동 Spawn
+- 16개 박스 순환 이동
+- 컨베이어 반복 이동 구조
+- 생산 라인 시뮬레이션용 연속 흐름 유지
+
+6.3 스크립트
+scr_ConveyorItemMover
+scr_ConveyorSpawnManager
+
+7. Transform Recorder 구조
+7.1 오브젝트별 기록
+각 추적 오브젝트는 scr_TransformRecorder를 통해 프레임 단위 데이터를 기록
+
+7.2 기록 데이터
+frameIndex
+timeStamp
+posX / posY / posZ
+rotX / rotY / rotZ
+scaleX / scaleY / scaleZ
+
+- 오브젝트 상태 시각화용 원본 데이터 확보
+- JSON / CSV 저장용 데이터 생성
+- 그래프 분석용 데이터 유지
+
+8. Recorder Manager 구조
+8.1 관련 스크립트
+scr_TransformRecorderManager
+
+8.2 기능
+16개 Recorder 관리
+Start / Stop 구조
+프레임 데이터 수집
+저장 시 Recorder 전체 데이터를 세션 단위로 집계
+
+9. Save / Load 구조
+9.1 관련 스크립트
+scr_TransformDataSaveLoadManager
+NST_Json
+NST_CSV
+TransformMonitoringSaveData
+TransformObjectRecordData
+TransformFrameData
+
+9.2 SaveLoadManager 기능
+scr_TransformDataSaveLoadManager는 저장 폴더 경로 생성, 기본 JSON 경로 반환, 신규 CSV 경로 생성, Recorder 데이터를 세션 구조로 집계, JSON/CSV 저장, 경로 기반 JSON/CSV 로드지원
+
+9.3 저장 구조
+JSON: transform_record.json (txt 파일)
+CSV: transform_record_0000000_000000.csv (Exel 파일)
+Sheet 생성: 
+ObjectName / FrameIndex / TimeStamp / PosX PosY PosZ / RotX RotY RotZ / ScaleX ScaleY ScaleZ
+
+JSON 저장 UI 상태 메시지 
+CSV 저장 UI 상태 메시지 
+Show JSON / Show CSV 모드 표시 
+파일 선택 후 Selected 표시 
+Load Selected 동작 
+
+10. Graph System 구조
+10.1 구성
+GraphSystem
+├ GraphDataProvider
+├ GraphRenderer
+├ GraphUIController
+├ GraphLiveViewController
+├ TransformGraphOverviewController
+├ TransformOverviewGraphCard
+└ FileBrowserUI
+
+10.2 역할
+GraphDataProvider: Recorder 데이터를 그래프용 포인트로 변환
+GraphRenderer: 단일 그래프 / 다중 그래프 렌더링
+GraphUIController: 모드, 카테고리, 축, 오브젝트 선택 및 UI 동기화
+GraphLiveViewController: Live View 카메라 및 확대 패널 제어
+OverviewController / OverviewGraphCard: 전체 박스 소형 그래프 카드 표시
+FileBrowserUI: 저장 파일 목록 및 버튼 UI 제어
+
+11. 그래프 구조 
+11.1 Overview
+전체 박스를 소형 그래프 카드로 표시
+전체 흐름 확인
+이상 박스 탐색
+멈춤 / 튐 / 지연 확인
+
+11.2 Detail
+선택 박스의 XYZ 3축 비교
+선택 박스의 3축 상태 비교
+어느 축이 이상한지 파악
+동일 오브젝트의 축별 상태를 4분면으로 확인
+
+11.3 Focus
+선택 박스의 단일 축 확대
+특정 축 상세 분석
+튐 / 정지 / 노이즈 확인
+단일 축 그래프를 확대해서 정밀 확인
+
+12. Graph UI 구조
+12.1 GraphCanvas
+GraphCanvas
+├ FullScreenBackground
+├ MainHeader
+├ GraphPanel
+└ ConveyorZoomPanel
+
+12.2 GraphPanel
+GraphPanel
+├ TopPanel
+├ LeftPanel
+├ CenterPanel
+├ RightPanel
+└ FileBrowserPanel
+
+12.3 최종 화면 구분
+좌측: 오브젝트 목록 및 모드 버튼
+상단: Position / Rotation / Scale 선택, 현재 요약 정보
+중앙: Overview / Detail / Focus 그래프 영역
+우측: Live View, 상태 해석 패널, 축 선택 버튼
+하단: 파일 브라우저 및 Save / Load 버튼
+
+13. Left Panel
+Box_01 ~ Box_16 선택
+동적 버튼 생성
+선택 오브젝트 기준 Detail / Focus / Live View 갱신
+프리팹: PF_ObjectGraphButton
+16개 오브젝트 버튼 동작 
+선택 시 그래프 전환 
+
+14. Top Panel
+Position / Rotation / Scale 카테고리 선택
+현재 대상 오브젝트 / 카테고리 / 축 표시
+Current / Min / Max / Frame Range 표시
+Position / Rotation / Scale 버튼 선택
+
+15. Center Panel
+메인 그래프 표시
+GridContainer / PointContainer / LineContainer 기반 렌더링
+Y축 라벨 / 범례 / 그래프 제목 표시
+Detail 4분면 고정 구조
+각 패널 제목 / 범례
+Overview 카드형 구조
+Focus 단일 축 확대
+
+16. Right Panel
+16.1 LiveViewPanel
+선택 대상 추적 카메라
+RawImage 출력
+Selected / Metric / Status 표시
+ConveyorZoomPanel 확대 
+
+16.2 ConveyorZoomPanel
+Live Conveyor 클릭 시 전체 확대
+Close 버튼으로 그래프 복귀
+정면 / 옆면 / 사선 시점 전환 
+Live View 패널 단독 시연
+
+16.3 CurrentStatePanel
+상태 해석 결과 표시
+State / Meaning / Risk / Insight 값 표시
+Risk는 색상으로 구분
+낮음 = 초록
+주의 / 중간 = 노랑
+높음 / 위험 = 빨강
+
+16.4 AxisPanel
+All / X / Y / Z 축 선택
+Focus 및 Detail 표시와 연동
+버튼 선택 상태 시각화 
+
+17. File Browser Panel
+FileBrowserPanel
+├ FileListPanel
+├ FileInfoPanel
+└ FileButtonPanel
+
+버튼구성
+Show JSON
+Show CSV
+Refresh
+Save JSON
+Save CSV
+Load Selected
+
+FileListPanel: 저장 파일 목록 표시 및 선택
+FileInfoPanel: 현재 모드 / 선택 파일 / 상태 표시
+FileButtonPanel: 조회 / 저장 / 불러오기 실행
+
+프리팹: PF_FileButton
+Status
+Mode 표시 (JSON / CSV로 정리)
+Show 버튼 / Save 버튼 
+Save CSV 후 CSV 모드 자동 전환
+JSON / CSV 상태 문구 
+
+18. 데이터 규모
+16 Objects
+600 Frames 이상
+총: 16 × 600 = 9600 frames / 각 frame: 9 values
+총 데이터: 9600 × 9 = 86400 values
+
+
+

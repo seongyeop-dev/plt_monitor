@@ -1,0 +1,126 @@
+1. 최종 테스트 체크리스트
+A. 실행 기본 상태
+
+[O] Unity Console 에러 0개
+[O] 플레이 직후 시스템 정상 시작
+[O] Box 16개가 생산 라인에서 정상 순환
+[O] FPS 표시 정상 출력
+[O] 게임 뷰 해상도/레이아웃 깨짐 없음
+
+B. 오브젝트/데이터
+
+[O] 추적 오브젝트 16개 이상 유지
+[O] 각 오브젝트 Recorder 정상 동작
+[O] 오브젝트당 600프레임 유지 구조 확인
+[O] Position 기록 정상
+[O] Rotation 기록 정상
+[O] Scale 기록 정상
+[O] X/Y/Z 축 데이터 정상 기록
+
+C. 그래프 UI 기본 동작
+
+[O] Overview 버튼 정상
+[O] Detail 버튼 정상
+[O] Focus 버튼 정상
+[O] Position 버튼 정상
+[O] Rotation 버튼 정상
+[O] Scale 버튼 정상
+[O] All / X / Y / Z 버튼 정상
+[O] Box_01 ~ Box_16 선택 버튼 정상
+[O] 선택된 박스 강조 표시 정상
+
+D. Overview 모드
+
+[O] 16개 카드 그래프 정상 표시
+[O] 카드 제목(Box 이름) 정상 표시
+[O] 카드 Current 값 정상 표시
+[O] 카드 상태 해석 문구 정상 표시
+[O] 카드 클릭 시 Detail 전환 정상
+[O] Overview에서 그래프가 심하게 깨지거나 사라지지 않음
+
+E. Detail 모드
+
+[O] 선택 박스 기준 X 그래프 정상
+[O] 선택 박스 기준 Y 그래프 정상
+[O] 선택 박스 기준 Z 그래프 정상
+[O] All 그래프 정상
+[O] 4분면 제목 정상 표시
+[O] 범례 정상 표시
+[O] Y축 라벨 겹침 없음
+[O] Current / Min / Max / Frame Range 정상 표시
+
+F. Focus 모드
+
+[O] 단일 축 확대 그래프 정상 표시
+[O] Position X / Y / Z 각각 정상
+[O] Rotation X / Y / Z 각각 정상
+[O] Scale X / Y / Z 각각 정상
+[O] Current 값 정상 표시
+[O] Min / Max 정상 표시
+[O] Frame Range 정상 표시
+[O] 그래프 확대 시 가독성 유지
+
+G. Live View / Right Panel
+
+[O] Live Conveyor 패널 정상 표시
+[O] 선택 대상(Box 이름) 정상 표시
+[O] Metric 표시 정상
+[O] Status 표시 정상
+[O] CurrentStatePanel 문구 정상
+[O] State / Meaning / Risk / Insight 표시 정상
+[O] Risk 색상 정상 적용
+[O] Overview / Detail / Focus에 따라 해석 문구
+
+H. 파일 브라우저 / 저장 / 불러오기
+
+[O] Show JSON 버튼 정상
+[O] Show CSV 버튼 정상
+[O] Refresh 버튼 정상
+[O] Save JSON 버튼 정상
+[O] Save CSV 버튼 정상
+[O] 파일 리스트 정상 표시
+[O] 선택 파일 표시 정상
+[O] Status 문구 정상
+[O] Load Selected 버튼 정상
+[O] JSON 저장 후 실제 파일 생성 확인
+[O] CSV 저장 후 실제 파일 생성 확인
+[O] JSON 로드 정상
+[O] CSV 로드 정상
+
+I. 성능 / Profiler
+
+[정상] 일반 실행 중 FPS 안정적
+[정상] 그래프 전환 시 큰 끊김 없음
+[정상] Box 선택 시 큰 끊김 없음
+[정상] Overview / Detail / Focus 전환 시 큰 끊김 없음
+[클릭 병목 현상있음] Save JSON 클릭 시 병목 체감 기록
+[클릭 병목 현상있음] Save CSV 클릭 시 병목 체감 기록
+[정상] Load 클릭 시 병목 체감 기록
+[O] Profiler에서 CPU spike 위치 확인
+[O] Profiler에서 GC spike 위치 확인
+[Save Json, CSV 버튼 클릭 시 우상향 클릭 후 이상없음] 메모리 우상향 폭주 없음
+
+성능 분석 결과
+Profiler 기준 일반 실행 중 FPS는 100 이상으로 안정적으로 유지
+그래프 전환, Box 선택, Overview / Detail / Focus 전환 끊김 없음
+
+클릭 순간 CPU spike 발생
+클릭 순간 GC spike 발생
+FPS가 약 40 전후까지 일시 하락
+이후 다시 100 이상으로 회복
+
+해결방법으로 코루틴 기반 저장 처리 방식을 적용 하였지만, 
+시간이 지날수록 FPS가 낮아져 유지가 어려운 것으로 확인되어 미적용 하였습니다. 
+아직 미세한 문제는 있지만, 요건에 충족하다고 판단되어 미세조정 하지 않았습니다.
+
+항목 1: Save JSON 클릭 시 병목
+Save JSON 버튼 클릭 => 클릭 순간 FPS 하락
+허용
+
+항목 2: Save CSV 클릭 시 병목
+Save CSV 버튼 클릭 => 클릭 순간 FPS 하락
+허용
+
+항목 3
+저장 코루틴 방식 장시간 실행 성능 저하 => 코루틴 방식 저장 처리 적용 후 장시간 테스트 => FPS 점진 하락
+미적용

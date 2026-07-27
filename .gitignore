@@ -1,0 +1,47 @@
+# Unity generated folders
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Ll]ogs/
+[Mm]emoryCaptures/
+[Rr]ecordings/
+UserSettings/
+
+# IDE and generated project files
+.vs/
+.idea/
+.vscode/
+ExportedObj/
+*.csproj
+*.sln
+*.suo
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.tmp
+*.bak
+*.log
+
+# Unity build output
+Build/
+Builds/
+PLT_Monitor_BurstDebugInformation_DoNotShip/
+*_BurstDebugInformation_DoNotShip/
+
+# Unity crash and diagnostics
+sysinfo.txt
+*.stackdump
+
+# Local backup archives
+Assets.zip
+
+# External icon asset kept locally but not redistributed
+Assets/CleanFlatIcon/
+Assets/CleanFlatIcon.meta
+
+# Operating system files
+.DS_Store
+Thumbs.db
+Desktop.ini

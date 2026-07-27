@@ -1,0 +1,143 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7052010290843146709
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5420041136878589526}
+  - component: {fileID: 638043714816208351}
+  - component: {fileID: 4169731540872816757}
+  m_Layer: 0
+  m_Name: PF_GraphUIController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &5420041136878589526
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7052010290843146709}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &638043714816208351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7052010290843146709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b277506df6b9f47489291d69bdbb530b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::scr_TransformGraphUIController
+  graphDataProvider: {fileID: 0}
+  graphRenderer: {fileID: 0}
+  liveViewController: {fileID: 4169731540872816757}
+  axisLabelX: {fileID: 0}
+  axisLabelY: {fileID: 0}
+  legendText: {fileID: 0}
+  objectButtonContainer: {fileID: 0}
+  objectButtonPrefab: {fileID: 735390460134176336, guid: 8eab684fe78041644af0b949af24abe2, type: 3}
+  overviewButton: {fileID: 0}
+  detailButton: {fileID: 0}
+  focusButton: {fileID: 0}
+  positionButton: {fileID: 0}
+  rotationButton: {fileID: 0}
+  scaleButton: {fileID: 0}
+  allButton: {fileID: 0}
+  axisXButton: {fileID: 0}
+  axisYButton: {fileID: 0}
+  axisZButton: {fileID: 0}
+  buttonActiveColor: {r: 0.05882353, g: 0.28235295, b: 0.54901963, a: 1}
+  buttonInactiveColor: {r: 0.10980392, g: 0.24705882, b: 0.40784314, a: 1}
+  buttonActiveTextColor: {r: 1, g: 1, b: 1, a: 1}
+  buttonInactiveTextColor: {r: 1, g: 1, b: 1, a: 1}
+  summaryText: {fileID: 0}
+  metricTitleText: {fileID: 0}
+  currentValueText: {fileID: 0}
+  minValueText: {fileID: 0}
+  maxValueText: {fileID: 0}
+  frameRangeText: {fileID: 0}
+  conveyorStateText: {fileID: 0}
+  axisMeaningText: {fileID: 0}
+  riskText: {fileID: 0}
+  insightText: {fileID: 0}
+  defaultObjectName: Box_01
+  defaultCategory: 0
+  defaultAxis: 2
+  defaultMode: 1
+  overviewPanel: {fileID: 0}
+  detailQuadPanel: {fileID: 0}
+  focusGraphArea: {fileID: 0}
+  overviewController: {fileID: 0}
+  detailQuadController: {fileID: 0}
+  initializeOnStart: 1
+  visiblePointCount: 120
+--- !u!114 &4169731540872816757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7052010290843146709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 229f220d391bef349b1bf753d385f4d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::scr_TransformGraphLiveViewController
+  liveViewCamera: {fileID: 0}
+  liveRenderTexture: {fileID: 8400000, guid: 2d74234b905411142963aa641f782b24, type: 2}
+  liveViewRawImage: {fileID: 0}
+  liveViewOpenButton: {fileID: 0}
+  liveSelectedObjectText: {fileID: 0}
+  liveMetricText: {fileID: 0}
+  liveStatusText: {fileID: 0}
+  frontViewButton: {fileID: 0}
+  sideViewButton: {fileID: 0}
+  diagonalViewButton: {fileID: 0}
+  defaultViewTarget: {fileID: 0}
+  followSelectedTarget: 1
+  followLerpSpeed: 5
+  cameraOffset: {x: 0, y: 5, z: -8}
+  lookOffset: {x: 0, y: 0, z: 0}
+  frontViewOffset: {x: 0, y: 5, z: -8}
+  frontLookOffset: {x: 0, y: 0, z: 0}
+  sideViewOffset: {x: 10, y: 5, z: 2}
+  sideLookOffset: {x: 0, y: 0, z: 1.5}
+  diagonalViewOffset: {x: 6, y: 5, z: -6}
+  diagonalLookOffset: {x: 0, y: 0, z: 0}
+  enableClickToResetView: 0
+  defaultViewName: Container View
+  defaultMetricName: Overview
+  defaultStatusText: Viewing Container
+  dashboardPanel: {fileID: 0}
+  focusGraphArea: {fileID: 0}
+  closeDashboardButton: {fileID: 0}
+  uiRootsToHideWhenDashboardOpen:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

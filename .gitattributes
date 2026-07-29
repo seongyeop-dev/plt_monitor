@@ -1,0 +1,4 @@
+*.wlt linguist-vendored
+Assets/TutorialInfo/** linguist-vendored
+*.md text eol=lf
+.gitattributes text eol=lf

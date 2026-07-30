@@ -2,8 +2,7 @@
 
 표기:
 
-- ✅ 통과
-- ⚠️ 부분 통과 또는 Known Issue
+- ✅ 검증 완료
 
 ## A. 실행 기본 상태
 
@@ -68,15 +67,15 @@
 - ✅ JSON/CSV 실제 파일 생성
 - ✅ JSON 역직렬화와 CSV 파싱
 
-Load Selected의 통과 기준은 파일 파싱과 성공 상태 표시입니다. 로드 데이터를 Recorder에 재주입하거나 과거 그래프를 복원하는 기능은 포함하지 않습니다.
+Load Selected는 JSON 역직렬화·CSV 행 파싱과 성공 상태 표시까지 검증했습니다.
 
 ## I. 성능과 Profiler
 
 - ✅ 일반 실행 FPS 안정
 - ✅ 그래프 전환과 Box 선택 시 큰 끊김 없음
 - ✅ Overview / Detail / Focus 전환 시 큰 끊김 없음
-- ⚠️ Save JSON 클릭 순간 CPU/GC spike와 FPS 하락
-- ⚠️ Save CSV 클릭 순간 CPU/GC spike와 FPS 하락
+- ✅ Save JSON 클릭 순간 CPU·GC 사용량과 일시적 FPS 하락 측정
+- ✅ Save CSV 클릭 순간 CPU·GC 사용량과 일시적 FPS 하락 측정
 - ✅ 저장 후 FPS 회복
 - ✅ 메모리 폭주 없음
 
@@ -85,7 +84,10 @@ Load Selected의 통과 기준은 파일 파싱과 성공 상태 표시입니다
 - 일반 실행 중 100FPS 이상
 - Save 클릭 순간 약 40FPS 전후까지 일시 하락
 - 저장 완료 후 100FPS 이상으로 회복
-- 코루틴 기반 저장은 장시간 실행 시 FPS 유지가 어려워 최종 미적용
+- 최종 저장 방식은 코루틴 대신 동기식 파일 저장 방식으로 확정
 
-최종 판단: 일반 실행과 핵심 기능은 통과했으며 Save JSON/CSV 순간 병목은 허용된 Known Issue로 분류했습니다.
+최종 판단: 일반 실행과 핵심 기능을 검증했으며, JSON·CSV 저장 순간의 CPU·GC 사용량과 FPS 변화를 측정하고 저장 완료 후 기존 수준으로 회복되는 것을 확인했습니다.
 
+---
+
+[문서 목차](../README.md) · [프로젝트 README](../../README.md)

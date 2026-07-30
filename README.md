@@ -3,22 +3,22 @@
 > Unity 기반 생산 라인 Transform 기록·그래프 분석·JSON/CSV 저장 시스템
 
 <p align="center">
-  <img src="docs/images/overview/대표-오버뷰.png" alt="PLT Monitor 대표 오버뷰" width="100%">
+  <img src="docs/images/overview/대표_오버뷰.png" alt="PLT Monitor 대표 오버뷰" width="100%">
 </p>
 
 ## 프로젝트 정보
 
 | 항목 | 내용 |
-|---|---|
+|:---|:---|
 | 개발 형태 | 교육 과정 기반 개인 프로젝트 |
 | 구현 범위 | 생산 라인 시뮬레이션, 16개 대상 Transform 기록, 그래프 분석, JSON·CSV 저장·조회, Windows 빌드 |
 | 개발 환경 | Unity 6000.3.10f1, C# |
 | 실행 환경 | Windows Intel 64-bit |
-| 프로젝트 상태 | 주요 기능 구현 및 Windows Standalone 검증 완료 |
+| 프로젝트 상태 | 주요 기능 구현 및 Windows 독립 실행형 빌드 검증 완료 |
 
 ## 프로젝트 개요
 
-생산 라인에서 이동하는 여러 오브젝트의 Position·Rotation·Scale 변화를 실시간으로 기록하고 비교하기 위해 제작한 Unity 기반 모니터링 시스템입니다. Box 16개를 Object Pool로 순환시키고, 대상별 최근 600프레임을 Rolling Buffer로 유지합니다.
+생산 라인에서 이동하는 여러 오브젝트의 Position·Rotation·Scale 변화를 실시간으로 기록하고 비교하기 위해 제작한 Unity 기반 모니터링 시스템입니다. Box 16개를 Object Pool로 순환시키고, 대상별 최근 600프레임을 고정 크기 순환 버퍼로 유지합니다.
 
 수집한 데이터는 Overview·Detail·Focus 그래프로 단계적으로 분석하고, 선택 대상을 추적하는 Live View와 규칙 기반 Meaning Analyzer를 함께 표시합니다. 현재 세션은 JSON·CSV로 저장하며 File Browser에서 파일 목록, 선택과 파싱 결과를 확인할 수 있습니다.
 
@@ -50,20 +50,19 @@ Overview는 16개 대상을 카드형 미니 그래프로 비교합니다. 대�
 
 <table>
   <tr>
-    <td width="50%"><img src="docs/images/overview/대표-오버뷰.png" alt="Overview 그래프"></td>
-    <td width="50%"><img src="docs/images/features/상세-그래프.png" alt="Detail 그래프"></td>
+    <td width="50%" align="center"><img src="docs/images/overview/대표_오버뷰.png" alt="Overview 그래프" width="100%"></td>
+    <td width="50%" align="center"><img src="docs/images/features/상세_그래프.png" alt="Detail 그래프" width="100%"></td>
   </tr>
   <tr>
     <td align="center">Overview</td>
     <td align="center">Detail</td>
   </tr>
-  <tr>
-    <td colspan="2"><img src="docs/images/features/포커스-그래프.png" alt="Focus 그래프"></td>
-  </tr>
-  <tr>
-    <td colspan="2" align="center">Focus</td>
-  </tr>
 </table>
+
+<p align="center">
+  <img src="docs/images/features/포커스_그래프.png" alt="Focus 그래프" width="90%">
+</p>
+<p align="center">Focus</p>
 
 ### 실시간 Transform 기록
 
@@ -79,7 +78,7 @@ Overview는 16개 대상을 카드형 미니 그래프로 비교합니다. 대�
 선택한 Box를 카메라로 추적하고 현재 대상, Metric과 Recording 상태를 표시합니다. 최근 데이터 구간의 변화량과 범위를 기준으로 상태·의미·위험도·인사이트를 생성합니다.
 
 <p align="center">
-  <img src="docs/images/features/라이브-뷰.png" alt="Live View 및 상태 해석" width="45%">
+  <img src="docs/images/features/라이브_뷰.png" alt="Live View 및 상태 해석" width="267">
 </p>
 
 Meaning Analyzer는 Position Z를 전방 이송축으로 가정한 규칙 기반 해석이며, 학습형 AI 예측 모델은 아닙니다.
@@ -89,10 +88,10 @@ Meaning Analyzer는 Position Z를 전방 이송축으로 가정한 규칙 기반
 현재 Recorder 데이터를 세션 단위 DTO로 집계해 JSON 또는 CSV 파일로 저장합니다. File Browser에서 확장자별 목록을 조회하고 선택한 파일의 파싱 성공 여부와 상태 메시지를 확인합니다.
 
 <p align="center">
-  <img src="docs/images/features/JSON-CSV-저장-및-조회.png" alt="JSON CSV 저장 및 조회" width="100%">
+  <img src="docs/images/features/데이터_저장_및_조회.png" alt="JSON CSV 저장 및 조회" width="100%">
 </p>
 
-`Load Selected`는 JSON 역직렬화 또는 CSV 파싱까지 수행합니다. 로드한 데이터를 Recorder에 다시 주입하거나 과거 세션 그래프로 재생하는 기능은 현재 범위에 포함되지 않습니다.
+`Load Selected`는 JSON 역직렬화 또는 CSV 파싱과 처리 상태 확인까지 수행하도록 구현했습니다.
 
 ## 시스템 구성
 
@@ -118,14 +117,14 @@ flowchart LR
 - Interpretation Layer: 최근 프레임의 변화량과 범위를 규칙으로 해석
 - Save/File Layer: 세션 집계, JSON·CSV 저장, 파일 목록과 파싱 상태 표시
 
-자세한 구성은 [시스템 아키텍처](docs/02-architecture.md)에서 확인할 수 있습니다.
+자세한 구성은 [시스템 아키텍처](docs/02_architecture.md)에서 확인할 수 있습니다.
 
 ## 데이터 흐름
 
 ```mermaid
 flowchart LR
     A[Box 이동] --> B[Transform 기록]
-    B --> C[대상별 600프레임 Rolling Buffer]
+    B --> C[대상별 600프레임 고정 크기 순환 버퍼]
     C --> D[GraphPoint 변환]
     D --> E[Overview / Detail / Focus]
     D --> F[Meaning Analyzer]
@@ -138,12 +137,12 @@ flowchart LR
     J --> K[JSON 역직렬화 / CSV 파싱]
 ```
 
-런타임 파일은 `Application.persistentDataPath/PLT_Monitor/TransformRecords` 아래에 저장됩니다. 자세한 구조는 [데이터 흐름](docs/04-data-flow.md)에 정리했습니다.
+런타임 파일은 `Application.persistentDataPath/PLT_Monitor/TransformRecords` 아래에 저장됩니다. 자세한 구조는 [데이터 흐름](docs/04_data_flow.md)에 정리했습니다.
 
 ## 기술 스택
 
 | 구분 | 기술 |
-|---|---|
+|:---|:---|
 | Engine | Unity 6000.3.10f1 |
 | Language | C# |
 | Rendering | Universal Render Pipeline 17.3.0 |
@@ -173,10 +172,10 @@ flowchart LR
 ## 검증 결과
 
 | 검증 항목 | 결과 | 확인 내용 |
-|---|---|---|
+|:---|:---:|:---|
 | 생산 라인 순환 | PASS | Box 16개 Spawn·이동·재활용 |
 | Transform 기록 | PASS | Position·Rotation·Scale의 X·Y·Z 기록 |
-| Rolling Buffer | PASS | 대상별 최근 600프레임 유지 |
+| 고정 크기 순환 버퍼 | PASS | 대상별 최근 600프레임 유지 |
 | Overview | PASS | 16개 카드 그래프와 대상 선택 |
 | Detail | PASS | 선택 대상의 X·Y·Z·All 4분면 표시 |
 | Focus | PASS | 선택 축 확대와 Current·Min·Max 표시 |
@@ -186,25 +185,25 @@ flowchart LR
 | CSV 저장·파싱 | PASS | 파일 생성, 행 파싱과 상태 메시지 |
 | 일반 실행 성능 | PASS | 요구 기준 60FPS 이상, 기존 QA 기록상 100FPS 이상 |
 | Windows Build | PASS | Intel 64-bit Standalone 실행 확인 |
-| 저장 순간 성능 | Known Issue | CPU·GC Spike 후 기존 FPS 수준으로 회복 |
+| 저장 순간 성능 측정 | 측정 완료 | CPU·GC Spike와 일시적 FPS 하락 확인 후 기존 수준으로 회복 |
 
 <table>
   <tr>
-    <td width="50%"><img src="docs/images/validation/윈도우-빌드-실행.png" alt="Windows Standalone 실행"></td>
-    <td width="50%"><img src="docs/images/validation/JSON-CSV-파일-생성.png" alt="JSON CSV 파일 생성"></td>
+    <td width="50%" align="center"><img src="docs/images/validation/윈도우_빌드_실행.png" alt="Windows 독립 실행형 빌드 실행" width="100%"></td>
+    <td width="50%" align="center"><img src="docs/images/validation/데이터_파일_생성.png" alt="JSON·CSV 파일 생성" width="100%"></td>
   </tr>
   <tr>
-    <td align="center">Windows Standalone 실행</td>
+    <td align="center">Windows 독립 실행형 빌드 실행</td>
     <td align="center">JSON·CSV 파일 생성</td>
   </tr>
 </table>
 
 <p align="center">
-  <img src="docs/images/validation/Unity-Profiler-측정.png" alt="Unity Profiler 측정" width="100%">
+  <img src="docs/images/validation/프로파일러_측정.png" alt="Unity Profiler 측정" width="90%">
 </p>
 <p align="center">Unity Profiler 측정 화면</p>
 
-세부 검증 항목과 근거는 [검증 결과](docs/05-validation.md)와 [최종 기능 테스트 체크리스트](docs/qa/final-test-checklist.md)에 정리했습니다.
+세부 검증 항목과 근거는 [검증 결과](docs/05_validation.md)와 [최종 기능 테스트 체크리스트](docs/qa/final_test_checklist.md)에 정리했습니다.
 
 ## 프로젝트 구조
 
@@ -229,7 +228,7 @@ Assets
 └─ Settings
 ```
 
-주요 Prefab과 클래스 구성은 [프로젝트 구조](docs/07-project-structure.md)에서 확인할 수 있습니다.
+주요 Prefab과 클래스 구성은 [프로젝트 구조](docs/07_project_structure.md)에서 확인할 수 있습니다.
 
 ## 문제 해결 및 최종 구현 범위
 
@@ -242,21 +241,21 @@ PLT Monitor는 구현과 검증을 완료한 교육 평가 프로젝트입니다
 - Unity Profiler로 저장 순간의 CPU·GC 사용량을 확인했습니다.
 - 기록·관리·그래프 조회·파일 저장·저장 UI의 역할을 분리했습니다.
 
-구현 과정에서 발생한 문제와 처리 결과는 [문제 해결 및 최종 구현 범위](docs/06-project-scope.md)에 정리했습니다.
+구현 과정에서 발생한 문제와 처리 결과는 [문제 해결 및 최종 구현 범위](docs/06_project_scope.md)에 정리했습니다.
 ## 상세 문서
 
 | 문서 | 내용 |
-|---|---|
+|:---|:---|
 | [Documentation](docs/README.md) | 상세 문서 전체 목차 |
-| [01. Overview](docs/01-overview.md) | 개발 목적과 구현 범위 |
-| [02. Architecture](docs/02-architecture.md) | Recorder·그래프·저장 계층 |
-| [03. Features](docs/03-features.md) | 생산 라인과 그래프 기능 |
-| [04. Data Flow](docs/04-data-flow.md) | Transform 기록과 JSON·CSV 처리 |
-| [05. Validation](docs/05-validation.md) | 테스트 환경과 검증 결과 |
-| [06. 문제 해결 및 최종 구현 범위](docs/06-project-scope.md) | 구현 과정의 주요 문제·원인·해결 방법과 최종 구현 범위 |
-| [07. Project Structure](docs/07-project-structure.md) | 폴더·Prefab·스크립트 구성 |
-| [Final Test Checklist](docs/qa/final-test-checklist.md) | 세부 기능 테스트 항목 |
-| [Presentation](docs/presentation/PLT_Monitor.pptx) | 프로젝트 발표 자료 |
+| [01. Overview](docs/01_overview.md) | 개발 목적과 구현 범위 |
+| [02. Architecture](docs/02_architecture.md) | Recorder·그래프·저장 계층 |
+| [03. Features](docs/03_features.md) | 생산 라인과 그래프 기능 |
+| [04. Data Flow](docs/04_data_flow.md) | Transform 기록과 JSON·CSV 처리 |
+| [05. Validation](docs/05_validation.md) | 테스트 환경과 검증 결과 |
+| [06. Project Scope](docs/06_project_scope.md) | 구현 과정의 주요 문제·원인·해결 방법과 최종 구현 범위 |
+| [07. Project Structure](docs/07_project_structure.md) | 폴더·Prefab·스크립트 구성 |
+| [Final Test Checklist](docs/qa/final_test_checklist.md) | 세부 기능 테스트 항목 |
+| [Presentation](docs/presentation/plt_monitor.pptx) | 프로젝트 발표 자료 |
 
 ## 외부 리소스 및 라이선스
 

@@ -35,7 +35,7 @@ Graph Data Provider는 Position·Rotation·Scale과 X·Y·Z 선택에 따라 필
 ### TransformFrameData
 
 | 구분 | 필드 |
-|---|---|
+|:---|:---|
 | 식별 | `frameIndex`, `timeStamp` |
 | Position | `posX`, `posY`, `posZ` |
 | Rotation | `rotX`, `rotY`, `rotZ` |
@@ -63,7 +63,7 @@ flowchart LR
     D --> E[File Browser JSON 목록]
 ```
 
-JSON은 들여쓰기된 텍스트로 저장합니다. 현재 파일명은 고정이므로 Save JSON을 다시 실행하면 같은 파일을 갱신합니다.
+JSON은 들여쓰기된 텍스트로 저장합니다. 파일명은 고정되어 있으며 Save JSON을 다시 실행하면 같은 파일을 갱신합니다.
 
 ## CSV 저장 흐름
 
@@ -89,7 +89,7 @@ flowchart LR
     D --> E
 ```
 
-현재 Load는 파일 구조를 읽고 파싱 결과를 확인하는 기능입니다. 파싱된 데이터를 현재 Recorder에 주입하거나 그래프를 과거 시점으로 복원하지 않습니다.
+`Load Selected`는 선택한 파일 구조를 읽어 JSON 역직렬화 또는 CSV 행 파싱을 수행하고 성공·실패 상태를 화면에 표시합니다.
 
 ## 저장 경로
 
@@ -103,4 +103,6 @@ Application.persistentDataPath
 
 Windows에서는 `AppData/LocalLow/<CompanyName>/<ProductName>` 아래에 위 폴더가 추가됩니다. 저장 파일에는 사용자 이름이나 로컬 절대경로를 기록하지 않습니다.
 
-[문서 목차로 돌아가기](README.md)
+---
+
+[문서 목차](README.md) · [프로젝트 README](../README.md)

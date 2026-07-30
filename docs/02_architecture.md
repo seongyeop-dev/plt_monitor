@@ -61,7 +61,7 @@ scr_TransformGraphDataProvider
 ```
 
 | 클래스 | 역할 |
-|---|---|
+|:---|:---|
 | `scr_TransformGraphDataProvider` | Recorder 데이터를 GraphPoint 시리즈로 변환 |
 | `scr_TransformGraphUIController` | 모드·대상·카테고리·축 선택 상태 총괄 |
 | `scr_TransformGraphOverviewController` | 16개 Overview 카드 생성과 갱신 |
@@ -92,7 +92,7 @@ flowchart LR
 메인 Scene은 `Assets/Scenes/PL_TransformMonitor.unity`이며 Build Settings에 활성화돼 있습니다. 주요 기능은 `PF_PL_Root`, `PF_GraphSystem`, Production Line·TrackObjects·Graph UI Prefab으로 분리했습니다.
 
 <p align="center">
-  <img src="images/architecture/주요-스크립트-구조.png" alt="주요 스크립트 구조" width="50%">
+  <img src="images/architecture/주요_스크립트_구조.png" alt="주요 스크립트 구조" width="360">
 </p>
 
 ## 설계 기준
@@ -104,4 +104,6 @@ flowchart LR
 - 파일 로드는 파싱 결과와 UI 상태까지만 명확히 제한
 - 외부 에셋 없이 핵심 그래프 기능이 실행되도록 Point Marker 교체
 
-[문서 목차로 돌아가기](README.md)
+---
+
+[문서 목차](README.md) · [프로젝트 README](../README.md)

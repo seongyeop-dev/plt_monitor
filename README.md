@@ -231,16 +231,18 @@ Assets
 
 주요 Prefab과 클래스 구성은 [프로젝트 구조](docs/07-project-structure.md)에서 확인할 수 있습니다.
 
-## Known Issues
+## 문제 해결 및 최종 구현 범위
 
-- Save JSON·CSV 실행 시 16개 대상의 프레임 복사, DTO 구성, 직렬화와 파일 I/O가 메인 스레드에서 연속 수행되어 순간 CPU·GC Spike가 발생합니다.
-- 기존 QA 기록에서는 저장 순간 약 40FPS 전후까지 하락한 뒤 일반 실행 수준으로 회복했습니다.
-- `Load Selected`는 파일 파싱과 성공 상태 표시까지 구현했으며, 과거 세션 그래프 복원은 포함하지 않습니다.
-- Meaning Analyzer는 프로젝트 좌표계와 임계값을 사용한 규칙 기반 해석입니다.
-- 성능 검증은 개인 PC의 Windows 환경과 Box 16개·대상별 600프레임 범위에서 수행했습니다.
+PLT Monitor는 구현과 검증을 완료한 교육 평가 프로젝트입니다.
 
-자세한 범위와 개선 방향은 [Known Issues](docs/06-known-issues.md)에 정리했습니다.
+- 16개 오브젝트의 Transform을 실시간으로 기록했습니다.
+- 기록 데이터는 최근 600프레임만 순환 보관하도록 구성했습니다.
+- Overview·Detail·Focus 단계별 그래프를 구현했습니다.
+- JSON 저장과 CSV 내보내기 기능을 구현했습니다.
+- Unity Profiler로 저장 순간의 CPU·GC 사용량을 확인했습니다.
+- 기록·관리·그래프 조회·파일 저장·저장 UI의 역할을 분리했습니다.
 
+구현 과정에서 발생한 문제와 처리 결과는 [문제 해결 및 최종 구현 범위](docs/06-project-scope.md)에 정리했습니다.
 ## 상세 문서
 
 | 문서 | 내용 |
@@ -251,7 +253,7 @@ Assets
 | [03. Features](docs/03-features.md) | 생산 라인과 그래프 기능 |
 | [04. Data Flow](docs/04-data-flow.md) | Transform 기록과 JSON·CSV 처리 |
 | [05. Validation](docs/05-validation.md) | 테스트 환경과 검증 결과 |
-| [06. Known Issues](docs/06-known-issues.md) | 성능 병목과 현재 범위 |
+| [06. Project Scope](docs/06-project-scope.md) | 성능 병목과 현재 범위 |
 | [07. Project Structure](docs/07-project-structure.md) | 폴더·Prefab·스크립트 구성 |
 | [Final Test Checklist](docs/qa/final-test-checklist.md) | 세부 기능 테스트 항목 |
 | [Presentation](docs/presentation/PLT_Monitor.pptx) | 프로젝트 발표 자료 |

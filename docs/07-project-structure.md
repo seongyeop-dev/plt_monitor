@@ -22,7 +22,7 @@ PLT_Monitor
 │  ├─ 03-features.md
 │  ├─ 04-data-flow.md
 │  ├─ 05-validation.md
-│  ├─ 06-known-issues.md
+│  ├─ 06-project-scope.md
 │  ├─ 07-project-structure.md
 │  ├─ images
 │  ├─ presentation

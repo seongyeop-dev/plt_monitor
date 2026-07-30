@@ -3,7 +3,7 @@
 ## 테스트 환경
 
 | 항목 | 내용 |
-|---|---|
+|:---|:---|
 | Unity | 6000.3.10f1 |
 | Platform | Windows |
 | Architecture | Intel 64-bit |
@@ -14,7 +14,7 @@
 ## 기능 검증
 
 | 영역 | 검증 항목 | 결과 |
-|---|---|---|
+|:---|:---|:---:|
 | Startup | Console Error 없이 시스템 시작 | PASS |
 | Production Line | Box 16개 Spawn·이동·재활용 | PASS |
 | Recorder | 각 Box의 Position·Rotation·Scale XYZ 기록 | PASS |
@@ -30,19 +30,23 @@
 | File Browser | 목록·선택·새로고침·상태 메시지 | PASS |
 | Windows Build | Intel 64-bit Standalone 실행 | PASS |
 
-세부 항목은 [최종 기능 테스트 체크리스트](qa/final-test-checklist.md)에 유지했습니다.
+세부 항목은 [최종 기능 테스트 체크리스트](qa/final_test_checklist.md)에 유지했습니다.
 
-## Windows Standalone 실행
+## Windows 독립 실행형 빌드 실행
 
 Unity Editor가 아닌 Windows 실행 파일에서 생산 라인, 그래프와 파일 기능을 확인했습니다.
 
-![Windows Standalone 실행](images/validation/윈도우-빌드-실행.png)
+<p align="center">
+  <img src="images/validation/윈도우_빌드_실행.png" alt="Windows 독립 실행형 빌드 실행" width="90%">
+</p>
 
 ## JSON·CSV 파일 생성
 
 `Application.persistentDataPath/PLT_Monitor/TransformRecords` 아래에 JSON과 타임스탬프 CSV 파일이 생성되는지 확인했습니다.
 
-![JSON CSV 파일 생성](images/validation/JSON-CSV-파일-생성.png)
+<p align="center">
+  <img src="images/validation/데이터_파일_생성.png" alt="JSON·CSV 파일 생성" width="90%">
+</p>
 
 ## 일반 실행 성능
 
@@ -50,7 +54,7 @@ Unity Editor가 아닌 Windows 실행 파일에서 생산 라인, 그래프와 �
 - 기존 QA 기록에서는 일반 실행 중 100FPS 이상을 유지했습니다.
 - Overview·Detail·Focus 전환, 대상 선택과 Live View 사용에서 큰 끊김이 없다고 기록돼 있습니다.
 
-이 수치는 기존 QA 문서와 화면 측정 기록을 기준으로 정리한 값이며, 저장소에는 자동 성능 테스트나 원본 Profiler Capture 파일이 포함돼 있지 않습니다.
+성능 수치는 기존 QA 문서와 화면 측정 기록을 기준으로 정리했습니다.
 
 ## 저장 순간 Profiler 결과
 
@@ -63,22 +67,14 @@ Save JSON 또는 Save CSV를 실행하면 CPU와 GC Spike가 발생하고 기존
 3. JSON 직렬화 또는 최대 9,600개 CSV 행 생성
 4. 문자열 생성과 파일 I/O
 
-![Unity Profiler 측정](images/validation/Unity-Profiler-측정.png)
+<p align="center">
+  <img src="images/validation/프로파일러_측정.png" alt="Unity Profiler 측정" width="90%">
+</p>
 
 ## 검증 범위
 
-- 개인 PC의 Windows Standalone 환경
-- Box 16개
-- 대상별 최대 600프레임
-- 로컬 JSON·CSV 저장
-- 단일 사용자 실행
+Windows 독립 실행형 빌드의 단일 사용자 환경에서 Box 16개와 대상별 최대 600프레임을 기준으로 생산 라인 순환, Transform 기록, 단계별 그래프, Live View, JSON·CSV 저장·파싱과 저장 순간 성능 변화를 검증했습니다.
 
-다음 항목은 현재 검증 범위에 포함하지 않았습니다.
+---
 
-- 수백 개 이상의 대상
-- 장시간 무중단 실행
-- 저사양·다양한 하드웨어 비교
-- 네트워크·서버 저장
-- 로드 세션 그래프 재생
-
-[문서 목차로 돌아가기](README.md)
+[문서 목차](README.md) · [프로젝트 README](../README.md)

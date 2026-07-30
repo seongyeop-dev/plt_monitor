@@ -3,7 +3,7 @@
 ## 저장소 구조
 
 ```text
-PLT_Monitor
+plt_monitor
 ├─ Assets
 │  ├─ Art
 │  ├─ Docs
@@ -17,16 +17,18 @@ PLT_Monitor
 ├─ ProjectSettings
 ├─ docs
 │  ├─ README.md
-│  ├─ 01-overview.md
-│  ├─ 02-architecture.md
-│  ├─ 03-features.md
-│  ├─ 04-data-flow.md
-│  ├─ 05-validation.md
-│  ├─ 06-project-scope.md
-│  ├─ 07-project-structure.md
+│  ├─ 01_overview.md
+│  ├─ 02_architecture.md
+│  ├─ 03_features.md
+│  ├─ 04_data_flow.md
+│  ├─ 05_validation.md
+│  ├─ 06_project_scope.md
+│  ├─ 07_project_structure.md
 │  ├─ images
 │  ├─ presentation
+│  │  └─ plt_monitor.pptx
 │  └─ qa
+│     └─ final_test_checklist.md
 ├─ THIRD_PARTY_NOTICES.md
 └─ README.md
 ```
@@ -66,7 +68,7 @@ Assets
 ## 주요 Prefab
 
 | 폴더 | 주요 Prefab | 역할 |
-|---|---|---|
+|:---|:---|:---|
 | `Basic` | `PF_Box`, `PF_Conveyor`, `PF_GraphArea`, `PF_OverviewGraphCard` | 생산 라인 기본 오브젝트와 그래프 카드 |
 | `Control` | `PF_GraphDataProvider`, `PF_GraphUIController`, `PF_OverviewController` | 그래프 데이터·상태·Overview 제어 |
 | `Scne Conveyor` | `PF_ProductionLine`, `PF_TrackObjects`, `PF_CameraRig`, `PF_Debug_FPS` | 생산 라인, Box Pool, 카메라와 FPS |
@@ -76,7 +78,7 @@ Assets
 ## Data Scripts
 
 | 파일 | 역할 |
-|---|---|
+|:---|:---|
 | `TransformFrameData.cs` | 프레임 인덱스·시간과 9개 Transform 값 |
 | `TransformObjectRecordData.cs` | 대상명과 프레임 목록 |
 | `TransformMonitoringSaveData.cs` | 세션 정보와 전체 대상 목록 |
@@ -89,7 +91,7 @@ Assets
 ## ProductionLine Scripts
 
 | 파일 | 역할 |
-|---|---|
+|:---|:---|
 | `scr_ConveyorSpawnManager.cs` | 16개 Box Pool 초기화, Spawn과 회수 |
 | `scr_ConveyorItemMover.cs` | 개별 Box 이동과 EndPoint 판정 |
 | `scr_AutoRotateObject.cs` | Rotation 변화 테스트 |
@@ -98,14 +100,14 @@ Assets
 ## SaveLoad Scripts
 
 | 파일 | 역할 |
-|---|---|
+|:---|:---|
 | `scr_TransformDataSaveLoadManager.cs` | 세션 집계, JSON·CSV 저장과 파싱 |
 | `scr_TransformFileBrowserUI.cs` | 파일 목록, 선택, 저장·로드 버튼과 상태 메시지 |
 
 ## UI Scripts
 
 | 파일 | 역할 |
-|---|---|
+|:---|:---|
 | `scr_TransformGraphDataProvider.cs` | Recorder 데이터를 GraphPoint로 변환 |
 | `scr_TransformGraphUIController.cs` | 모드·대상·카테고리·축 상태 총괄 |
 | `scr_TransformGraphOverviewController.cs` | Overview 카드 생성과 갱신 |
@@ -120,7 +122,7 @@ Assets
 ## 주요 패키지
 
 | 패키지 | 버전 | 용도 |
-|---|---:|---|
+|:---|---:|:---|
 | Universal Render Pipeline | 17.3.0 | 렌더링 |
 | Unity uGUI | 2.0.0 | 모니터링 UI |
 | Input System | 1.18.0 | 입력 처리 |
@@ -128,4 +130,6 @@ Assets
 
 외부 에셋과 라이선스 범위는 [Third-Party Notices](../THIRD_PARTY_NOTICES.md)에서 확인할 수 있습니다.
 
-[문서 목차로 돌아가기](README.md)
+---
+
+[문서 목차](README.md) · [프로젝트 README](../README.md)

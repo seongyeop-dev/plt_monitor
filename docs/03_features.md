@@ -22,26 +22,32 @@
 
 16개 대상을 카드형 미니 그래프로 동시에 표시합니다. 전체 흐름을 비교하고 정지, 편차나 흔들림이 의심되는 대상을 찾는 첫 단계입니다. 카드를 선택하면 해당 대상의 Detail로 이동합니다.
 
-![Overview 그래프](images/overview/대표-오버뷰.png)
+<p align="center">
+  <img src="images/overview/대표_오버뷰.png" alt="Overview 그래프" width="90%">
+</p>
 
 ## Detail
 
 선택한 대상의 X·Y·Z와 All 시리즈를 4분면에 표시합니다. 동일한 Transform 카테고리에서 축별 변화 차이를 비교합니다.
 
-![Detail 그래프](images/features/상세-그래프.png)
+<p align="center">
+  <img src="images/features/상세_그래프.png" alt="Detail 그래프" width="90%">
+</p>
 
 ## Focus
 
 선택한 단일 축을 큰 그래프로 표시합니다. 최근 구간의 변화, 튐, 정지와 노이즈를 확인합니다.
 
-![Focus 그래프](images/features/포커스-그래프.png)
+<p align="center">
+  <img src="images/features/포커스_그래프.png" alt="Focus 그래프" width="90%">
+</p>
 
 ## Live View
 
 선택된 Box를 카메라가 추적하고 대상명, 현재 Metric과 Recording 상태를 표시합니다. Right Panel에서 All·X·Y·Z 선택과 상태 해석을 함께 확인할 수 있습니다.
 
 <p align="center">
-  <img src="images/features/라이브-뷰.png" alt="Live View" width="45%">
+  <img src="images/features/라이브_뷰.png" alt="Live View" width="267">
 </p>
 
 ## Meaning Analyzer
@@ -49,7 +55,7 @@
 최근 30개 GraphPoint의 시작값·종료값·최소·최대 범위를 이용해 상태를 해석합니다.
 
 | 카테고리 | 프로젝트 기준 |
-|---|---|
+|:---|:---|
 | Position Z | 컨베이어 전방 이송축 |
 | Position X | 좌우 편차 |
 | Position Y | 상하 흔들림 |
@@ -75,8 +81,12 @@
 - 선택한 CSV 행 파싱
 - 성공·실패 상태 메시지
 
-![JSON CSV 저장 및 조회](images/features/JSON-CSV-저장-및-조회.png)
+<p align="center">
+  <img src="images/features/데이터_저장_및_조회.png" alt="JSON·CSV 저장 및 조회" width="100%">
+</p>
 
-로드 결과는 메서드 내부에서 확인하며 Recorder·DataProvider·Graph UI에 다시 전달하지 않습니다.
+`Load Selected`는 선택한 JSON 파일의 역직렬화 또는 CSV 행 파싱을 수행하고 성공·실패 상태를 File Browser에 표시합니다.
 
-[문서 목차로 돌아가기](README.md)
+---
+
+[문서 목차](README.md) · [프로젝트 README](../README.md)

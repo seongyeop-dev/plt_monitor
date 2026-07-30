@@ -7,17 +7,17 @@
 ## 프로젝트 목적
 
 - Box 16개의 Position·Rotation·Scale을 실시간 기록
-- 대상별 최근 600프레임 Rolling Buffer 유지
+- 대상별 최근 600프레임 고정 크기 순환 버퍼 유지
 - Overview·Detail·Focus의 단계별 그래프 분석
 - 선택 대상을 추적하는 Live View 구성
 - 최근 데이터 구간의 상태·의미·위험도 표시
 - JSON·CSV 저장, 파일 목록 조회와 파싱 결과 확인
-- Windows Standalone 실행과 성능 검증
+- Windows 독립 실행형 빌드 실행과 성능 검증
 
 ## 구현 범위
 
 | 구분 | 구현 내용 |
-|---|---|
+|:---|:---|
 | Production Line | Box 16개 Object Pool, Spawn·이동·재활용 |
 | Recorder | Position·Rotation·Scale XYZ 프레임 기록 |
 | Buffer | 대상별 최대 600프레임 유지 |
@@ -37,16 +37,19 @@
 
 각 프레임은 `frameIndex`, `timeStamp`와 Position·Rotation·Scale의 X·Y·Z를 보관합니다.
 
-## 구현하지 않은 범위
+## 개발 단계
 
-- 로드한 세션을 Recorder에 다시 주입
-- 과거 세션 그래프 재생과 현재 데이터 비교
-- 서버·데이터베이스 업로드
-- 학습형 AI 기반 이상 탐지
-- 대규모 대상과 장시간 무중단 환경의 부하 검증
+1. 생산 라인과 16개 Box Object Pool 구성
+2. Position·Rotation·Scale 기록과 대상별 600프레임 순환 보관
+3. Overview·Detail·Focus 단계별 그래프 구성
+4. 선택 대상 추적용 Live View와 규칙 기반 상태 해석 구현
+5. JSON·CSV 저장, 파일 목록 조회와 파싱 결과 표시
+6. Windows 독립 실행형 빌드 실행과 Unity Profiler 검증
 
 ## 최종 결과
 
-생산 라인 시뮬레이션, 16개 대상의 Transform 기록, 단계별 그래프, Live View, 규칙 기반 해석과 JSON·CSV 파일 관리를 하나의 대시보드로 통합했습니다. 일반 모니터링과 핵심 기능은 최종 체크리스트를 통과했으며, 저장 순간의 CPU·GC Spike는 Known Issue로 분리해 기록했습니다.
+생산 라인 시뮬레이션, 16개 대상의 Transform 기록, 단계별 그래프, Live View, 규칙 기반 해석과 JSON·CSV 파일 관리를 하나의 대시보드로 통합했습니다. 일반 모니터링과 핵심 기능은 최종 체크리스트를 통과했으며, JSON·CSV 저장 순간에는 Unity Profiler로 CPU·GC 사용량과 일시적인 FPS 하락 후 회복 과정을 확인했습니다.
 
-[문서 목차로 돌아가기](README.md)
+---
+
+[문서 목차](README.md) · [프로젝트 README](../README.md)

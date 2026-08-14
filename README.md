@@ -246,16 +246,16 @@ PLT Monitor는 구현과 검증을 완료한 교육 평가 프로젝트입니다
 
 | 문서 | 내용 |
 |:---|:---|
-| [Documentation](docs/README.md) | 상세 문서 전체 목차 |
-| [01. Overview](docs/01_overview.md) | 개발 목적과 구현 범위 |
-| [02. Architecture](docs/02_architecture.md) | Recorder·그래프·저장 계층 |
-| [03. Features](docs/03_features.md) | 생산 라인과 그래프 기능 |
-| [04. Data Flow](docs/04_data_flow.md) | Transform 기록과 JSON·CSV 처리 |
-| [05. Validation](docs/05_validation.md) | 테스트 환경과 검증 결과 |
-| [06. Project Scope](docs/06_project_scope.md) | 구현 과정의 주요 문제·원인·해결 방법과 최종 구현 범위 |
-| [07. Project Structure](docs/07_project_structure.md) | 폴더·Prefab·스크립트 구성 |
-| [Final Test Checklist](docs/qa/final_test_checklist.md) | 세부 기능 테스트 항목 |
-| [Presentation](docs/presentation/plt_monitor.pptx) | 프로젝트 발표 자료 |
+| [문서 목록](docs/README.md) | 상세 문서 전체 목차 |
+| [01. 프로젝트 개요](docs/01_overview.md) | 개발 목적과 구현 범위 |
+| [02. 시스템 아키텍처](docs/02_architecture.md) | Recorder·그래프·저장 계층 |
+| [03. 주요 기능](docs/03_features.md) | 생산 라인과 그래프 기능 |
+| [04. 데이터 흐름](docs/04_data_flow.md) | Transform 기록과 JSON·CSV 처리 |
+| [05. 검증 결과](docs/05_validation.md) | 테스트 환경과 검증 결과 |
+| [06. 프로젝트 범위](docs/06_project_scope.md) | 구현 과정의 주요 문제·원인·해결 방법과 최종 구현 범위 |
+| [07. 프로젝트 구조](docs/07_project_structure.md) | 폴더·Prefab·스크립트 구성 |
+| [최종 기능 테스트 체크리스트](docs/qa/final_test_checklist.md) | 세부 기능 테스트 항목 |
+| [발표 자료](docs/presentation/plt_monitor.pptx) | 프로젝트 발표 자료 |
 
 ## 외부 리소스 및 라이선스
 

@@ -1,4 +1,4 @@
-# 04. Data Flow
+# 04. 데이터 흐름
 
 ## Transform 기록 흐름
 

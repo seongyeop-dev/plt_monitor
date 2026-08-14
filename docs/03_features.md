@@ -1,4 +1,4 @@
-# 03. Features
+# 03. 주요 기능
 
 ## 생산 라인 및 Object Pool
 
